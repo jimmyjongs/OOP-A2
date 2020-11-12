@@ -36,8 +36,11 @@ Observer design pattern displayed in InspectUser.java and UserView.java
 ---
 ### Good OOP
 Encapsulated classes, private attribute, public getters and setters
+
 Sole Responsibility of classes
+
 Abstraction and extensibility thru Interfaces
+
 Inheritance and hierarchical class design
 
 
