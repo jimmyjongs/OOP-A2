@@ -1,11 +1,13 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.*;
 
 
 public class InspectUser extends Panel implements ActionListener{
     TextButton button;
     UserGroup root;
+    private ArrayList<UserView> instances;
 
     public InspectUser(UserGroup root){
         super();
@@ -14,6 +16,7 @@ public class InspectUser extends Panel implements ActionListener{
         this.getPanel().setLayout(new BorderLayout());
         this.button = new TextButton("Inspect User");
         this.getPanel().add(button.getPanel(), BorderLayout.CENTER);
+        this.instances = new ArrayList<UserView>();
         button.getButton().addActionListener(this);
     }
 
@@ -25,7 +28,8 @@ public class InspectUser extends Panel implements ActionListener{
                 String id = button.getText();
                 if(root.findUser(id) != null){
                     System.out.println("Hey" + root.findUser(id).getID());
-                    UserView view = new UserView(root.findUser(id), root);
+                    UserView view = new UserView(root.findUser(id), root, instances);
+                    instances.add(view);
                 }
                 else{
                     System.out.println("User not found");

@@ -8,6 +8,7 @@ import org.w3c.dom.Text;
 public class FollowPanel extends Panel implements Feed{
     private User user;
     private Panel content;
+    
     public FollowPanel(String label, User user){
         this.getPanel().setPreferredSize(new Dimension(300,300));
         this.setColor(Color.blue);

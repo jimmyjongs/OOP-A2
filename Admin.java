@@ -49,6 +49,9 @@ public class Admin {
         root.getUsers().get(0).followUser(root.findUser("Barney"));
         root.getUsers().get(0).followUser(root.findUser("Barb"));
         root.getUsers().get(0).followUser(root.findUser("Boggle"));
+        root.getUsers().get(1).followUser(root.findUser("Bob"));
+        root.getUsers().get(2).followUser(root.findUser("Bob"));
+        root.getUsers().get(3).followUser(root.findUser("Bob"));
 
         root.findUser("Barney").tweet("Hello 1");
         root.findUser("Barb").tweet("Hello 2");

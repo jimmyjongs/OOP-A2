@@ -23,6 +23,7 @@ public class User {
 
     public void followUser(User user){
         this.following.add(user);
+        user.addObserver(this);
     }
 
     public ArrayList<User> getFollowing(){
@@ -35,6 +36,20 @@ public class User {
     
     public ArrayList<String> getTweets() {
         return this.feed;
+    }
+
+    public ArrayList<User> getFollowers(){
+        return this.followers;
+    }
+
+    public void addObserver(User user){
+        this.followers.add(user);
+    }
+
+    public void notifyObservers(){
+        for(User each : followers){
+            
+        }
     }
 
    

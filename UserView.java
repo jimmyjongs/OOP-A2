@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.*;
 import org.w3c.dom.Text;
 
@@ -13,12 +14,19 @@ public class UserView extends Frame implements ActionListener{
     private User user;
     private String id;
     private UserGroup root;
+    private ArrayList<UserView> observers;
 
-    public UserView(User user, UserGroup root){
+    public UserView(User user, UserGroup root, ArrayList<UserView> observers){
         super(200,900);
         this.id = user.getID();
         this.user = user;
         this.root = root;
+        this.observers = observers;
+ 
+        // for(User each : user.getFollowers()){
+        //     UserView n = new UserView(user, root);
+        //     observers.add(n);
+        // }
 
 
         // probably should've made these into classes oh well
@@ -38,28 +46,6 @@ public class UserView extends Frame implements ActionListener{
         megaPanel.getPanel().add(tweetPanel.getPanel());
         tweetPanel.getButton().addActionListener(this);
 
-
-
-
-        // Panel listFollowPanel = new Panel();
-        // listFollowPanel.getPanel().setSize(new Dimension(300,300));
-        // listFollowPanel.setColor(Color.blue);
-        // JLabel followLabel = new JLabel();
-        // followLabel.setText("Currently Followers");
-        // listFollowPanel.getPanel().add(followLabel);
-        // for(User each: user.getFollowing()){
-        //     if(each != null){
-        //         Panel element = new Panel();
-        //         element.getPanel().setPreferredSize(new Dimension(200, 20));
-        //         JLabel n = new JLabel();
-    
-    
-        //         n.setText(each.getID());
-        //         element.getPanel().add(n);
-        //         listFollowPanel.getPanel().add(element.getPanel());
-        //     }
-        // }
-
         following = new FollowPanel("Currently Following", user);
         megaPanel.getPanel().add(following.getPanel());
 
@@ -68,37 +54,10 @@ public class UserView extends Frame implements ActionListener{
 
         this.add(megaPanel.getPanel());
 
-        // megaPanel.getPanel().add(listFollowPanel.getPanel());
+    }
 
-        // Panel listFeedPanel = new Panel();
-        // listFeedPanel.getPanel().setSize(new Dimension(300,300));
-        // listFeedPanel.setColor(Color.green);
-        // JLabel timelineLabel = new JLabel();
-        // timelineLabel.setText("Timeline");
-        // listFeedPanel.getPanel().add(timelineLabel);
-        // megaPanel.getPanel().add(listFeedPanel.getPanel());
-
-        // for(User each: user.getFollowing()){
-        //     if(each != null){
-        //         for(String tweet: each.getTweets()){
-        //             Panel element = new Panel();
-        //             element.getPanel().setPreferredSize(new Dimension(200, 20));
-        //             JLabel n = new JLabel();
-
-        //             System.out.println(tweet);
-        
-        
-        //             n.setText(each.getID() +": " + tweet);
-        //             element.getPanel().add(n);
-        //             listFeedPanel.getPanel().add(element.getPanel());
-        //         }
-        //     }
-            
-        //     this.add(megaPanel.getPanel());
-        // }
-
-        
-
+    private FeedPanel getFeedPanel(){
+        return this.feed;
     }
 
     @Override
@@ -114,6 +73,10 @@ public class UserView extends Frame implements ActionListener{
         else if (e.getSource() == tweetPanel.getButton()){
             user.tweet(tweetPanel.getText());
             feed.update();
+
+            for(UserView each : observers){
+                each.getFeedPanel().update();
+            }
 
             for(String each: user.getTweets()){
                 System.out.println(each);
