@@ -1,10 +1,8 @@
-import javax.swing.*;
 import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.*;
-import org.w3c.dom.Text;
 
 public class UserView extends Frame implements ActionListener{
     private ActionPanel followPanel;
@@ -23,13 +21,6 @@ public class UserView extends Frame implements ActionListener{
         this.root = root;
         this.observers = observers;
  
-        // for(User each : user.getFollowers()){
-        //     UserView n = new UserView(user, root);
-        //     observers.add(n);
-        // }
-
-
-        // probably should've made these into classes oh well
         Panel megaPanel = new Panel();
         JLabel title = new JLabel();
         title.setText(id);

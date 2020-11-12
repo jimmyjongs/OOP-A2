@@ -1,11 +1,9 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.*;
 
 public class TextButton extends Panel {
-    JButton button;
-    JTextArea text;
+    private JButton button;
+    private JTextArea text;
 
     public TextButton(String buttonLabel){
         super();

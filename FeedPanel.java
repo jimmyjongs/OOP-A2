@@ -1,9 +1,5 @@
-import javax.swing.*;
 import javax.swing.JLabel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.*;
-import org.w3c.dom.Text;
 
 public class FeedPanel extends Panel implements Feed{
     private User user;

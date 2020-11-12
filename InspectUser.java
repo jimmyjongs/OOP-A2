@@ -5,8 +5,8 @@ import java.awt.*;
 
 
 public class InspectUser extends Panel implements ActionListener{
-    TextButton button;
-    UserGroup root;
+    private TextButton button;
+    private UserGroup root;
     private ArrayList<UserView> instances;
 
     public InspectUser(UserGroup root){
@@ -22,7 +22,6 @@ public class InspectUser extends Panel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         if(e.getSource() == button.getButton()){
             if(!button.getText().equals("")){
                 String id = button.getText();

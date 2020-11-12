@@ -1,17 +1,14 @@
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DetailsPane extends Panel implements ActionListener {
-    JButton totalUsers;
-    JButton totalGroups;
-    JButton totalMsgs;
-    JButton totalPosMsgs;
+    private JButton totalUsers;
+    private JButton totalGroups;
+    private JButton totalMsgs;
+    private JButton totalPosMsgs;
     
 
 
@@ -49,7 +46,6 @@ public class DetailsPane extends Panel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         Frame popup = new Frame(400,200);
         if(e.getSource() == totalUsers){
             System.out.println("Total Users");
@@ -58,15 +54,12 @@ public class DetailsPane extends Panel implements ActionListener {
         }
         if(e.getSource() == totalGroups){
             System.out.println("Total Groups");
-            // Frame popup = new Frame(400,200);
         }
         else if(e.getSource() == totalMsgs){
             System.out.println("Total Msgs");
-            // Frame popup = new Frame(400,200);
         }
         else if(e.getSource() == totalPosMsgs){
             System.out.println("Total pos msgs");
-            // Frame popup = new Frame(400,200);
         }
         
             

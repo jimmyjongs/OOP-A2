@@ -1,12 +1,10 @@
 import javax.swing.*;
-import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
-import org.w3c.dom.Text;
 
 public class ActionPanel extends Panel implements ActionListener{
-    TextButton tbutton;
+    private TextButton tbutton;
     public ActionPanel(String buttonLabel){
         super();
         
@@ -28,7 +26,6 @@ public class ActionPanel extends Panel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        // TODO Auto-generated method stub
 
     }
 }

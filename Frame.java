@@ -1,7 +1,6 @@
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 
 public class Frame extends JFrame {
@@ -11,7 +10,6 @@ public class Frame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Title here"); // sets title
         this.getContentPane().setBackground(new Color(123, 50, 250));
-        // this.setResizable(false);
 
         JLabel label = new JLabel();
         label.setText("Bottom Text");
@@ -20,17 +18,14 @@ public class Frame extends JFrame {
         label.setForeground(Color.green);
         this.add(label);
 
-        // this.pack();
         
     }
 
     public Frame(int width, int height) {
         this.setSize(width,height); // sets frame size
         this.setVisible(true); // makes frame visible
-        // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Title here"); // sets title
         this.getContentPane().setBackground(new Color(123, 50, 250));
-        // this.setResizable(false);
 
         JLabel label = new JLabel();
         label.setText("Bottom Text");
@@ -39,8 +34,6 @@ public class Frame extends JFrame {
         label.setForeground(Color.green);
         this.add(label);
 
-        // this.pack();
-        
     }
 
     public void add(Panel comp){

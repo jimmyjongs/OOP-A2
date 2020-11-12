@@ -4,9 +4,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class Sidepane extends Panel {
-    // ArrayList<UserGroup> list = new ArrayList<UserGroup>();
-    UserGroup root;
-    Panel content;
+    private UserGroup root;
+    private Panel content;
     public Sidepane(UserGroup root){
         super();
         
@@ -14,6 +13,7 @@ public class Sidepane extends Panel {
         this.root = root;    
         this.content = new Panel();
         this.getPanel().setPreferredSize(new Dimension(200, 900)); 
+        content.getPanel().setPreferredSize(new Dimension(200, 900)); 
         displayList();
     }    
 
@@ -24,8 +24,6 @@ public class Sidepane extends Panel {
     public void displayList(){
 
         Panel element = new Panel();
-        // element.setColor(Color.yellow);
-        // element.getPanel().setPreferredSize(new Dimension(100, 20));
         JLabel n = new JLabel();
 
         content.getPanel().validate();

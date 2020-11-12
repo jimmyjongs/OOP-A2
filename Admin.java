@@ -7,15 +7,11 @@ public class Admin {
     private UserGroup root;
     private static Admin instance = new Admin();
 
-
-    // TextButton inspectUser;
     private Admin(){
         this.frame = new Frame();
         this.p = new Panel();
         this.root = new UserGroup("ROOT");
-
-        test();
-        // this.inspectUser = new TextButton("Inspect User");
+        populate();
         Sidepane sp = new Sidepane(root);
         frame.add(sp.getPanel(), BorderLayout.WEST);
 
@@ -27,7 +23,6 @@ public class Admin {
         p.getPanel().add(new UserPane(root, sp).getPanel(), BorderLayout.NORTH);
 
         // // inspect user panel
-        // p.getPanel().add(inspectUser.getPanel(), BorderLayout.CENTER);
         p.getPanel().add(new InspectUser(root).getPanel(), BorderLayout.CENTER);
         
 
@@ -39,7 +34,9 @@ public class Admin {
         return instance;
     }
 
-    private void test(){
+
+    // this test/driver code should probably be in the main
+    private void populate(){
         // testing
         root.addUser(new User("Bob"));
         root.addUser(new User("Barney"));
