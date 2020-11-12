@@ -8,25 +8,8 @@ public class Sidepane extends Panel {
     UserGroup root;
     public Sidepane(UserGroup root){
         super();
-        this.root = root;        
-        // this.list.add(root);
-
-        // testing
-        root.addUser(new User("Bob"));
-        root.addUser(new User("Bob"));
-        root.addUser(new User("Bob"));
-        root.addUser(new User("Bob"));
-        root.addUser(new User("Bob"));
-
-        UserGroup BSCS = new UserGroup("BSCS");
-
-        root.addUserGroup(BSCS);
-        BSCS.addUser(new User("Jimmy"));
-        BSCS.addUser(new User("Jimmy"));
-        BSCS.addUser(new User("Jimmy"));
-        BSCS.addUser(new User("Jimmy"));
-
-       
+        this.root = root;    
+            
         displayList();
     }    
 

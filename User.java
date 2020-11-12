@@ -8,19 +8,36 @@ public class User {
 
     public User(String id){
         this.id = id;
+        this.followers = new ArrayList<User>();
+        this.following = new ArrayList<User>();
+        this.feed = new ArrayList<String>();
+
+        // follow self to see tweets
+        // pos not necesary
+        this.following.add(this);
     }
 
     public String getID(){
         return id;
     }
 
-    public void followUser(String id){
-
+    public void followUser(User user){
+        this.following.add(user);
     }
 
-    public void tweet(String tweet){
-
+    public ArrayList<User> getFollowing(){
+        return following;
     }
+
+    public void tweet(String msg){
+        this.feed.add(msg);
+    }
+    
+    public ArrayList<String> getTweets() {
+        return this.feed;
+    }
+
+   
 
 
 
