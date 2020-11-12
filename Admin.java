@@ -2,11 +2,14 @@ import java.awt.*;
 
 import org.w3c.dom.Text;
 public class Admin {
-    Frame frame;
-    Panel p;
-    UserGroup root;
+    private Frame frame;
+    private Panel p;
+    private UserGroup root;
+    private static Admin instance = new Admin();
+
+
     // TextButton inspectUser;
-    public Admin(){
+    private Admin(){
         this.frame = new Frame();
         this.p = new Panel();
         this.root = new UserGroup("ROOT");
@@ -30,6 +33,10 @@ public class Admin {
 
         // bottom panel;
         p.getPanel().add(new DetailsPane().getPanel(), BorderLayout.SOUTH);
+    }
+
+    public static Admin getInstance(){
+        return instance;
     }
 
     private void test(){
@@ -58,4 +65,6 @@ public class Admin {
 
 
     }
+
+
 }
