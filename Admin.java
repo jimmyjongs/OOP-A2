@@ -16,15 +16,15 @@ public class Admin {
 
         test();
         // this.inspectUser = new TextButton("Inspect User");
-
-        frame.add(new Sidepane(root).getPanel(), BorderLayout.WEST);
+        Sidepane sp = new Sidepane(root);
+        frame.add(sp.getPanel(), BorderLayout.WEST);
 
         // empty panel
         frame.add(p.getPanel(), BorderLayout.CENTER);
         p.getPanel().setLayout(new BorderLayout());
 
         // user panel
-        p.getPanel().add(new UserPane(root).getPanel(), BorderLayout.NORTH);
+        p.getPanel().add(new UserPane(root, sp).getPanel(), BorderLayout.NORTH);
 
         // // inspect user panel
         // p.getPanel().add(inspectUser.getPanel(), BorderLayout.CENTER);

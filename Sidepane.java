@@ -6,10 +6,14 @@ import javax.swing.SwingConstants;
 public class Sidepane extends Panel {
     // ArrayList<UserGroup> list = new ArrayList<UserGroup>();
     UserGroup root;
+    Panel content;
     public Sidepane(UserGroup root){
         super();
+        
+        this.setColor(Color.black);
         this.root = root;    
-            
+        this.content = new Panel();
+        this.getPanel().setPreferredSize(new Dimension(200, 900)); 
         displayList();
     }    
 
@@ -20,29 +24,34 @@ public class Sidepane extends Panel {
     public void displayList(){
 
         Panel element = new Panel();
-        element.getPanel().setPreferredSize(new Dimension(100, 20));
+        // element.setColor(Color.yellow);
+        // element.getPanel().setPreferredSize(new Dimension(100, 20));
         JLabel n = new JLabel();
 
+        content.getPanel().validate();
+        content.getPanel().repaint();
+        content.getPanel().removeAll();
+        content.getPanel().updateUI();
 
+        
         n.setText("Root");
         n.setFont(new Font("Verdana", Font.BOLD, 16)); 
         element.getPanel().add(n);
-        this.getPanel().add(element.getPanel());
+        element.getPanel().setPreferredSize(new Dimension(100, 20));
+        content.getPanel().add(element.getPanel());
 
+        for(User each : root.getUsers()){
+            element = new Panel();
+            element.getPanel().setPreferredSize(new Dimension(100, 20));
+            n = new JLabel();
+
+
+            n.setText(each.getID());
+            element.getPanel().add(n);
+            content.getPanel().add(element.getPanel());
+        }
 
         for(UserGroup each: root.getGroups()){
-
-            for(User u: root.getUsers()){
-                element = new Panel();
-                element.getPanel().setPreferredSize(new Dimension(100, 20));
-                n = new JLabel();
-
-
-                n.setText(u.getID());
-                element.getPanel().add(n);
-                this.getPanel().add(element.getPanel());
-            }
-
             element = new Panel();
             element.getPanel().setPreferredSize(new Dimension(100, 20));
             n = new JLabel();
@@ -50,10 +59,9 @@ public class Sidepane extends Panel {
             n.setFont(new Font("Verdana", Font.BOLD, 16)); 
             n.setText(each.getID());
             element.getPanel().add(n);
-            this.getPanel().add(element.getPanel());
+            content.getPanel().add(element.getPanel());
 
-
-            for(User u : each.getUsers()){
+            for(User u: each.getUsers()){
                 element = new Panel();
                 element.getPanel().setPreferredSize(new Dimension(100, 20));
                 n = new JLabel();
@@ -61,9 +69,10 @@ public class Sidepane extends Panel {
 
                 n.setText(u.getID());
                 element.getPanel().add(n);
-                this.getPanel().add(element.getPanel());
+                content.getPanel().add(element.getPanel());
             }
-            
         }
+
+        this.getPanel().add(content.getPanel());
     }
 }

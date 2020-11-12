@@ -6,8 +6,10 @@ import java.awt.*;
 import org.w3c.dom.Text;
 
 public class UserView extends Frame implements ActionListener{
-    private TextButton follow;
-    private TextButton tweet;
+    private ActionPanel followPanel;
+    private ActionPanel tweetPanel;
+    private FollowPanel following;
+    private FeedPanel feed;
     private User user;
     private String id;
     private UserGroup root;
@@ -28,72 +30,72 @@ public class UserView extends Frame implements ActionListener{
         title.setVisible(true);
         megaPanel.getPanel().add(title);
 
-        Panel followPanel = new Panel();
-        followPanel.getPanel().setSize(new Dimension(300,300));
-        followPanel.setColor(Color.black);
-        follow = new TextButton("Follow User");
-        followPanel.getPanel().add(follow.getPanel());
-        follow.getButton().addActionListener(this);
+        followPanel = new ActionPanel("Follow User");
         megaPanel.getPanel().add(followPanel.getPanel());
+        followPanel.getButton().addActionListener(this);
 
-        Panel tweetPanel = new Panel();
-        tweetPanel.getPanel().setSize(new Dimension(300,300));
-        tweetPanel.setColor(Color.black);
-        tweet = new TextButton("Submit Tweet");
-        tweetPanel.getPanel().add(tweet.getPanel());
-        tweet.getButton().addActionListener(this);
+        tweetPanel = new ActionPanel("Tweet Message");
         megaPanel.getPanel().add(tweetPanel.getPanel());
+        tweetPanel.getButton().addActionListener(this);
 
 
 
 
-        Panel listFollowPanel = new Panel();
-        listFollowPanel.getPanel().setSize(new Dimension(300,300));
-        listFollowPanel.setColor(Color.blue);
-        JLabel followLabel = new JLabel();
-        followLabel.setText("Currently Followers");
-        listFollowPanel.getPanel().add(followLabel);
-        for(User each: user.getFollowing()){
-            if(each != null){
-                Panel element = new Panel();
-                element.getPanel().setPreferredSize(new Dimension(200, 20));
-                JLabel n = new JLabel();
+        // Panel listFollowPanel = new Panel();
+        // listFollowPanel.getPanel().setSize(new Dimension(300,300));
+        // listFollowPanel.setColor(Color.blue);
+        // JLabel followLabel = new JLabel();
+        // followLabel.setText("Currently Followers");
+        // listFollowPanel.getPanel().add(followLabel);
+        // for(User each: user.getFollowing()){
+        //     if(each != null){
+        //         Panel element = new Panel();
+        //         element.getPanel().setPreferredSize(new Dimension(200, 20));
+        //         JLabel n = new JLabel();
     
     
-                n.setText(each.getID());
-                element.getPanel().add(n);
-                listFollowPanel.getPanel().add(element.getPanel());
-            }
-        }
+        //         n.setText(each.getID());
+        //         element.getPanel().add(n);
+        //         listFollowPanel.getPanel().add(element.getPanel());
+        //     }
+        // }
 
-        megaPanel.getPanel().add(listFollowPanel.getPanel());
+        following = new FollowPanel("Currently Following", user);
+        megaPanel.getPanel().add(following.getPanel());
 
-        Panel listFeedPanel = new Panel();
-        listFeedPanel.getPanel().setSize(new Dimension(300,300));
-        listFeedPanel.setColor(Color.green);
-        JLabel timelineLabel = new JLabel();
-        timelineLabel.setText("Timeline");
-        listFeedPanel.getPanel().add(timelineLabel);
-        megaPanel.getPanel().add(listFeedPanel.getPanel());
+        feed = new FeedPanel("Tweet Feed", user);
+        megaPanel.getPanel().add(feed.getPanel());
 
-        for(User each: user.getFollowing()){
-            if(each != null){
-                for(String tweet: each.getTweets()){
-                    Panel element = new Panel();
-                    element.getPanel().setPreferredSize(new Dimension(200, 20));
-                    JLabel n = new JLabel();
+        this.add(megaPanel.getPanel());
 
-                    System.out.println(tweet);
+        // megaPanel.getPanel().add(listFollowPanel.getPanel());
+
+        // Panel listFeedPanel = new Panel();
+        // listFeedPanel.getPanel().setSize(new Dimension(300,300));
+        // listFeedPanel.setColor(Color.green);
+        // JLabel timelineLabel = new JLabel();
+        // timelineLabel.setText("Timeline");
+        // listFeedPanel.getPanel().add(timelineLabel);
+        // megaPanel.getPanel().add(listFeedPanel.getPanel());
+
+        // for(User each: user.getFollowing()){
+        //     if(each != null){
+        //         for(String tweet: each.getTweets()){
+        //             Panel element = new Panel();
+        //             element.getPanel().setPreferredSize(new Dimension(200, 20));
+        //             JLabel n = new JLabel();
+
+        //             System.out.println(tweet);
         
         
-                    n.setText(each.getID() +": " + tweet);
-                    element.getPanel().add(n);
-                    listFeedPanel.getPanel().add(element.getPanel());
-                }
-            }
+        //             n.setText(each.getID() +": " + tweet);
+        //             element.getPanel().add(n);
+        //             listFeedPanel.getPanel().add(element.getPanel());
+        //         }
+        //     }
             
-            this.add(megaPanel.getPanel());
-        }
+        //     this.add(megaPanel.getPanel());
+        // }
 
         
 
@@ -102,14 +104,16 @@ public class UserView extends Frame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        if(e.getSource() == follow.getButton()){
-            if(root.findUser(follow.getText()) != null){
-                user.followUser(root.findUser(follow.getText()));
-                System.out.println(root.findUser(follow.getText()).getID() + " followed");
-            }           
+        if(e.getSource() == followPanel.getButton()){
+            if(root.findUser(followPanel.getText()) != null){
+                user.followUser(root.findUser(followPanel.getText()));
+                System.out.println(root.findUser(followPanel.getText()).getID() + " followed");
+            }         
+            following.update();  
         }
-        else if (e.getSource() == tweet.getButton()){
-            user.tweet(tweet.getText());
+        else if (e.getSource() == tweetPanel.getButton()){
+            user.tweet(tweetPanel.getText());
+            feed.update();
 
             for(String each: user.getTweets()){
                 System.out.println(each);
