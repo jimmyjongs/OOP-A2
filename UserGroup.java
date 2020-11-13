@@ -1,47 +1,40 @@
 import java.util.ArrayList;
 
-public class UserGroup {
+public class UserGroup implements UserComposite{
     private String id;
-    private ArrayList<User> users;
-    private ArrayList<UserGroup> groups;
+    // private ArrayList<User> users;
+    // private ArrayList<UserGroup> groups;
+    private final ArrayList<UserComposite> children = new ArrayList<>();
 
   
 
     public UserGroup(String id){
         this.id = id;
-        this.users = new ArrayList<User>();
-        this.groups = new ArrayList<UserGroup>();
+        // this.users = new ArrayList<User>();
+        // this.groups = new ArrayList<UserGroup>();
     }
 
-    public void addUser(User u){
-        this.users.add(u);
+    public void add(UserComposite u){
+        this.children.add(u);
     }
 
-    public void addUserGroup(UserGroup g){
-        this.groups.add(g);
-    }
+    
 
-    public ArrayList<User> getUsers(){
-        return users;
-    }
 
-    public ArrayList<UserGroup> getGroups(){
-        return groups;
-    }
 
-    public User findUser(String id){
-        for(User each : this.users){
+    public UserComposite findUser(String id){
+        for(UserComposite each : this.children){
             if(each.getID().equals(id)){
                 System.out.println(each.getID() + " found");
                 return each;
             }
-        }
-
-        for(UserGroup eachGroup : this.groups){
-            for(User each : eachGroup.getUsers()){
-                if(each.getID().equals(id)){
-                    System.out.println(each.getID() + " found");
-                    return each;
+            
+            if(each.getChildren() != null){
+                for(UserComposite child : each.getChildren()){
+                    if(child.getID().equals(id)){
+                        System.out.println(child.getID() + " found");
+                        return child;
+                    }
                 }
             }
         }
@@ -49,7 +42,43 @@ public class UserGroup {
         return null;
     }
     
+    @Override
+    public ArrayList<UserComposite> getChildren(){
+        return this.children;
+    }
+
+    @Override
     public String getID(){
         return id;
+    }
+
+    @Override
+    public UserComposite getChild(int i) {
+        // TODO Auto-generated method stub
+        return children.get(i); 
+    }
+
+    @Override
+    public void followUser(UserComposite findUser) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void tweet(String string) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public ArrayList<UserComposite> getFollowing() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getTweets() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

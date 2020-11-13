@@ -2,17 +2,17 @@ import javax.swing.JLabel;
 import java.awt.*;
 
 public class FollowPanel extends Panel implements Feed{
-    private User user;
+    private UserComposite user;
     private Panel content;
     
-    public FollowPanel(String label, User user){
+    public FollowPanel(String label, UserComposite userComposite){
         this.getPanel().setPreferredSize(new Dimension(300,300));
         this.setColor(Color.blue);
         JLabel followLabel = new JLabel();
         followLabel.setText(label);
         this.getPanel().add(followLabel);
         this.content = new Panel();
-        this.user = user;
+        this.user = userComposite;
         
         update();
     }
@@ -23,7 +23,7 @@ public class FollowPanel extends Panel implements Feed{
         content.getPanel().repaint();
         content.getPanel().removeAll();
         content.getPanel().updateUI();
-        for(User each: user.getFollowing()){
+        for(UserComposite each: user.getFollowing()){
             if(each != null){
                 Panel element = new Panel();
                 element.getPanel().setPreferredSize(new Dimension(200, 20));

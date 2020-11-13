@@ -9,15 +9,15 @@ public class UserView extends Frame implements ActionListener{
     private ActionPanel tweetPanel;
     private FollowPanel following;
     private FeedPanel feed;
-    private User user;
+    private UserComposite user;
     private String id;
-    private UserGroup root;
+    private UserComposite root;
     private ArrayList<UserView> observers;
 
-    public UserView(User user, UserGroup root, ArrayList<UserView> observers){
+    public UserView(UserComposite userComposite, UserComposite root, ArrayList<UserView> observers){
         super(200,900);
-        this.id = user.getID();
-        this.user = user;
+        this.id = userComposite.getID();
+        this.user = userComposite;
         this.root = root;
         this.observers = observers;
  
@@ -37,10 +37,10 @@ public class UserView extends Frame implements ActionListener{
         megaPanel.getPanel().add(tweetPanel.getPanel());
         tweetPanel.getButton().addActionListener(this);
 
-        following = new FollowPanel("Currently Following", user);
+        following = new FollowPanel("Currently Following", userComposite);
         megaPanel.getPanel().add(following.getPanel());
 
-        feed = new FeedPanel("Tweet Feed", user);
+        feed = new FeedPanel("Tweet Feed", userComposite);
         megaPanel.getPanel().add(feed.getPanel());
 
         this.add(megaPanel.getPanel());

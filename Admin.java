@@ -4,7 +4,7 @@ import org.w3c.dom.Text;
 public class Admin {
     private Frame frame;
     private Panel p;
-    private UserGroup root;
+    private UserComposite root;
     private static Admin instance = new Admin();
 
     private Admin(){
@@ -38,17 +38,18 @@ public class Admin {
     // this test/driver code should probably be in the main
     private void populate(){
         // testing
-        root.addUser(new User("Bob"));
-        root.addUser(new User("Barney"));
-        root.addUser(new User("Barb"));
-        root.addUser(new User("Boggle"));
+        root.add(new User("Bob"));
+        root.add(new User("Barney"));
+        root.add(new User("Barb"));
+        root.add(new User("Boggle"));
   
-        root.getUsers().get(0).followUser(root.findUser("Barney"));
-        root.getUsers().get(0).followUser(root.findUser("Barb"));
-        root.getUsers().get(0).followUser(root.findUser("Boggle"));
-        root.getUsers().get(1).followUser(root.findUser("Bob"));
-        root.getUsers().get(2).followUser(root.findUser("Bob"));
-        root.getUsers().get(3).followUser(root.findUser("Bob"));
+        root.getChild(0).followUser(root.findUser("Barney"));
+
+        root.getChild(0).followUser(root.findUser("Barb"));
+        root.getChild(0).followUser(root.findUser("Boggle"));
+        root.getChild(0).followUser(root.findUser("Bob"));
+        root.getChild(0).followUser(root.findUser("Bob"));
+        root.getChild(0).followUser(root.findUser("Bob"));
 
         root.findUser("Barney").tweet("Hello 1");
         root.findUser("Barb").tweet("Hello 2");
@@ -57,11 +58,11 @@ public class Admin {
 
         UserGroup BSCS = new UserGroup("BSCS");
 
-        root.addUserGroup(BSCS);
-        BSCS.addUser(new User("Jimmy"));
-        BSCS.addUser(new User("John"));
-        BSCS.addUser(new User("James"));
-        BSCS.addUser(new User("Jojo"));
+        root.add(BSCS);
+        BSCS.add(new User("Jimmy"));
+        BSCS.add(new User("John"));
+        BSCS.add(new User("James"));
+        BSCS.add(new User("Jojo"));
 
 
     }

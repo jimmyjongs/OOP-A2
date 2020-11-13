@@ -4,9 +4,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class Sidepane extends Panel {
-    private UserGroup root;
+    private UserComposite root;
     private Panel content;
-    public Sidepane(UserGroup root){
+    public Sidepane(UserComposite root){
         super();
         
         this.setColor(Color.black);
@@ -17,7 +17,7 @@ public class Sidepane extends Panel {
         displayList();
     }    
 
-    public UserGroup getRoot(){
+    public UserComposite getRoot() {
         return root;
     }
 
@@ -37,39 +37,52 @@ public class Sidepane extends Panel {
         element.getPanel().add(n);
         element.getPanel().setPreferredSize(new Dimension(100, 20));
         content.getPanel().add(element.getPanel());
+        
+        for(UserComposite each : root.getChildren()){
 
-        for(User each : root.getUsers()){
-            element = new Panel();
-            element.getPanel().setPreferredSize(new Dimension(100, 20));
-            n = new JLabel();
+            
 
-
-            n.setText(each.getID());
-            element.getPanel().add(n);
-            content.getPanel().add(element.getPanel());
-        }
-
-        for(UserGroup each: root.getGroups()){
-            element = new Panel();
-            element.getPanel().setPreferredSize(new Dimension(100, 20));
-            n = new JLabel();
-
-            n.setFont(new Font("Verdana", Font.BOLD, 16)); 
-            n.setText(each.getID());
-            element.getPanel().add(n);
-            content.getPanel().add(element.getPanel());
-
-            for(User u: each.getUsers()){
+            if(each.getChildren() == null){
                 element = new Panel();
                 element.getPanel().setPreferredSize(new Dimension(100, 20));
                 n = new JLabel();
 
 
-                n.setText(u.getID());
+                n.setText(each.getID());
                 element.getPanel().add(n);
                 content.getPanel().add(element.getPanel());
             }
+
+            if(each.getChildren() != null){
+                element = new Panel();
+                element.getPanel().setPreferredSize(new Dimension(100, 20));
+                n = new JLabel();
+                n.setText(each.getID());
+                n.setFont(new Font("Verdana", Font.BOLD, 16)); 
+                System.out.println(each.getID());
+
+                element.getPanel().add(n);
+                element.getPanel().setPreferredSize(new Dimension(100, 20));
+                content.getPanel().add(element.getPanel());
+                
+                for(UserComposite child : each.getChildren()){
+                    element = new Panel();
+                    element.getPanel().setPreferredSize(new Dimension(100, 20));
+                    n = new JLabel();
+    
+    
+                    n.setText(child.getID());
+                    element.getPanel().add(n);
+                    content.getPanel().add(element.getPanel());
+                }
+            }
+            
+
+            
+
+    
         }
+
 
         this.getPanel().add(content.getPanel());
     }

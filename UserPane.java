@@ -8,11 +8,11 @@ public class UserPane extends Panel implements ActionListener{
    
     private TextButton addUser;
     private TextButton addGroup;
-    private UserGroup root;
+    private UserComposite root;
     private JButton button;
     private Sidepane sp;
 
-    public UserPane(UserGroup root, Sidepane sp){
+    public UserPane(UserComposite root, Sidepane sp){
         super();
       
         addUser = new TextButton("Add User");
@@ -30,15 +30,15 @@ public class UserPane extends Panel implements ActionListener{
 
     }
 
-    @Override
+ 	@Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == addUser.getButton()){
             System.out.println("Added user");
-            root.addUser(new User(addUser.getText()));
+            root.add(new User(addUser.getText()));
         }
         else if(e.getSource() == addGroup.getButton()){
             System.out.println("Added Group");
-            root.addUserGroup(new UserGroup(addGroup.getText()));
+            root.add(new UserGroup(addGroup.getText()));
         }
         sp.displayList();
     }

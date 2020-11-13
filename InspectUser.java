@@ -6,10 +6,10 @@ import java.awt.*;
 
 public class InspectUser extends Panel implements ActionListener{
     private TextButton button;
-    private UserGroup root;
+    private UserComposite root;
     private ArrayList<UserView> instances;
 
-    public InspectUser(UserGroup root){
+    public InspectUser(UserComposite root){
         super();
         this.root = root;
         this.getPanel().setSize(new Dimension(400,400));
