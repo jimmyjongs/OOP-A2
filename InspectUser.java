@@ -26,7 +26,6 @@ public class InspectUser extends Panel implements ActionListener{
             if(!button.getText().equals("")){
                 String id = button.getText();
                 if(root.findUser(id) != null){
-                    System.out.println("Hey" + root.findUser(id).getID());
                     UserView view = new UserView(root.findUser(id), root, instances);
                     instances.add(view);
                 }
@@ -38,11 +37,6 @@ public class InspectUser extends Panel implements ActionListener{
             else{
                 System.out.println("Error, enter valid ID");
             }
-            
-
-
         }
-
     }
-    
 }

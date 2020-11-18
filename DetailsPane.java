@@ -49,8 +49,6 @@ public class DetailsPane extends Panel implements ActionListener {
         Frame popup = new Frame(400,200);
         if(e.getSource() == totalUsers){
             System.out.println("Total Users");
-            
-       
         }
         if(e.getSource() == totalGroups){
             System.out.println("Total Groups");

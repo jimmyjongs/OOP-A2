@@ -53,7 +53,6 @@ public class UserView extends Frame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         if(e.getSource() == followPanel.getButton()){
             if(root.findUser(followPanel.getText()) != null){
                 user.followUser(root.findUser(followPanel.getText()));
@@ -65,6 +64,7 @@ public class UserView extends Frame implements ActionListener{
             user.tweet(tweetPanel.getText());
             feed.update();
 
+            // update observers
             for(UserView each : observers){
                 each.getFeedPanel().update();
             }
