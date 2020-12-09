@@ -20,6 +20,10 @@ public class UserView extends Frame implements ActionListener{
         this.user = userComposite;
         this.root = root;
         this.observers = observers;
+
+        // A3
+        System.out.println("User created: " + user.getCreationTime());
+        System.out.println("Last updated: " + user.getLastUpdated());
  
         Panel megaPanel = new Panel();
         JLabel title = new JLabel();
@@ -47,6 +51,7 @@ public class UserView extends Frame implements ActionListener{
 
     }
 
+ 
     private FeedPanel getFeedPanel(){
         return this.feed;
     }
@@ -64,14 +69,15 @@ public class UserView extends Frame implements ActionListener{
             user.tweet(tweetPanel.getText());
             feed.update();
 
-            // update observers
+            // update observers and lastUpdated time
             for(UserView each : observers){
                 each.getFeedPanel().update();
+                each.getFeedPanel().getUser().setLastUpdate();
             }
 
-            for(String each: user.getTweets()){
-                System.out.println(each);
-            }
+            // for(String each: user.getTweets()){
+            //     System.out.println(each);
+            // }
         }
 
 

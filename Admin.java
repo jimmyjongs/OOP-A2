@@ -24,6 +24,7 @@ public class Admin {
 
         // // inspect user panel
         p.getPanel().add(new InspectUser(root).getPanel(), BorderLayout.CENTER);
+        p.getPanel().add(new VerifyPanel(root).getPanel(), BorderLayout.EAST);
         
 
         // bottom panel;

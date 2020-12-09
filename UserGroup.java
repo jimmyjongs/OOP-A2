@@ -2,16 +2,14 @@ import java.util.ArrayList;
 
 public class UserGroup implements UserComposite{
     private String id;
-    // private ArrayList<User> users;
-    // private ArrayList<UserGroup> groups;
+    private long creationTime;
     private final ArrayList<UserComposite> children = new ArrayList<>();
 
   
 
     public UserGroup(String id){
         this.id = id;
-        // this.users = new ArrayList<User>();
-        // this.groups = new ArrayList<UserGroup>();
+        this.creationTime = System.currentTimeMillis();
     }
 
     public void add(UserComposite u){
@@ -25,14 +23,12 @@ public class UserGroup implements UserComposite{
     public UserComposite findUser(String id){
         for(UserComposite each : this.children){
             if(each.getID().equals(id)){
-                System.out.println(each.getID() + " found");
                 return each;
             }
             
             if(each.getChildren() != null){
                 for(UserComposite child : each.getChildren()){
                     if(child.getID().equals(id)){
-                        System.out.println(child.getID() + " found");
                         return child;
                     }
                 }
@@ -80,5 +76,22 @@ public class UserGroup implements UserComposite{
     public ArrayList<String> getTweets() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public long getCreationTime() {
+        return this.creationTime;
+    }
+
+    @Override
+    public void setLastUpdate() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public long getLastUpdated() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 }

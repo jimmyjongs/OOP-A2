@@ -13,5 +13,8 @@ public interface UserComposite {
 	public ArrayList<UserComposite>  getChildren();
 	public ArrayList<UserComposite> getFollowing();
 	public ArrayList<String> getTweets();
+	public long getCreationTime();
+	public void setLastUpdate();
+	public long getLastUpdated();
 
 }

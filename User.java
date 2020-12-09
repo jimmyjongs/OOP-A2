@@ -5,12 +5,19 @@ public class User implements UserComposite{
     private ArrayList<UserComposite> followers;
     private ArrayList<UserComposite> following;
     private ArrayList<String> feed;
+    private long creationTime;
+    private long lastUpdated;
+
 
     public User(String id){
         this.id = id;
         this.followers = new ArrayList<UserComposite>();
         this.following = new ArrayList<UserComposite>();
         this.feed = new ArrayList<String>();
+        this.creationTime = System.currentTimeMillis();
+
+        // initialize to some value
+        this.lastUpdated = this.creationTime;
 
         // follow self to see tweets
         // pos not necesary
@@ -33,8 +40,12 @@ public class User implements UserComposite{
 
     public void tweet(String msg){
         this.feed.add(msg);
+        setLastUpdate();
+        
     }
     
+
+
     @Override
     public ArrayList<String> getTweets() {
         return this.feed;
@@ -71,6 +82,21 @@ public class User implements UserComposite{
     public ArrayList<UserComposite> getChildren() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public long getCreationTime() {
+        return this.creationTime;
+    }
+
+    @Override
+    public void setLastUpdate() {
+        this.lastUpdated = System.currentTimeMillis();
+    }
+
+    @Override
+    public long getLastUpdated() {
+        return this.lastUpdated;
     }
 
  

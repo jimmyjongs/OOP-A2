@@ -17,6 +17,10 @@ public class FeedPanel extends Panel implements Feed{
         update();
     }
 
+    public UserComposite getUser(){
+        return user;
+    }
+
     @Override
     public void update() {
         content.getPanel().validate();
